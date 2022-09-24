@@ -1,3 +1,3 @@
-module github.com/basterrus/url_shortener_golang_app
+module url_shortener_golang_app
 
-go 1.19
+go 1.18

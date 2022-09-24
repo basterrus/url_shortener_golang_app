@@ -1,4 +1,4 @@
-package entitys
+package url_shortener_golang_app
 
 type User struct {
 	Id       int    `json:"-" db:"id"`
