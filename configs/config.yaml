@@ -1,8 +1,12 @@
 port: "8000"
 
 db:
-  host: "127.0.0.1"
+  host: "localhost"
   port: "5432"
-  username: "postgres"
-  dbname: "postgres"
+  username: "admin"
+  dbname: "url_shortener"
   sslMode: "disable"
+
+auth:
+  accessTokenTTL: 15m
+  refreshTokenTTL: 43200m

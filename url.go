@@ -1,6 +1,6 @@
 package url_shortener_golang_app
 
-type Url struct {
+type UrlList struct {
 	Id          int    `json:"-" db:"id"`
 	LongUrl     string `json:"longurl" db:"id" binding:"required"`
 	ShortUrl    string `json:"shorturl" db:"shorturl" binding:"required"`
@@ -10,5 +10,5 @@ type Url struct {
 type UserList struct {
 	Id     int
 	UserId int
-	ListId int
+	UrlId  int
 }
