@@ -116,8 +116,9 @@ class App extends React.Component {
                         <div className="container">
                             <Routes>
                                 <Route path='/login'
-                                       element={<AuthForm login={(username, password) => this.login(username, password)}/>}/>
-                                <Route path="/" element={<Main />} />
+                                       element={<AuthForm
+                                           login={(username, password) => this.login(username, password)}/>}/>
+                                <Route exact path="/" element={<Main/>}/>
                             </Routes>
                         </div>
                     </main>

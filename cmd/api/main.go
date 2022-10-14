@@ -10,10 +10,10 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"url_shortener_golang_app"
 	"url_shortener_golang_app/pkg/handler"
 	"url_shortener_golang_app/pkg/repository"
 	"url_shortener_golang_app/pkg/service"
+	"url_shortener_golang_app/server"
 )
 
 //@title URL Shortener Application API
@@ -58,7 +58,7 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	srv := new(url_shortener_golang_app.Server)
+	srv := new(server.Server)
 	go func() {
 		if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 			log.Fatalf("Error server run %s", err.Error())

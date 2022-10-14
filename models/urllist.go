@@ -1,4 +1,4 @@
-package url_shortener_golang_app
+package models
 
 type UrlList struct {
 	Id          int    `json:"-" db:"id"`

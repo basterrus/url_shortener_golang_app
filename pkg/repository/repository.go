@@ -2,17 +2,17 @@ package repository
 
 import (
 	"github.com/jmoiron/sqlx"
-	"url_shortener_golang_app"
+	"url_shortener_golang_app/models"
 )
 
 type Authorization interface {
-	CreateUser(user url_shortener_golang_app.User) (int, error)
-	GetUser(username, password string) (url_shortener_golang_app.User, error)
+	CreateUser(user models.User) (int, error)
+	GetUser(username, password string) (models.User, error)
 }
 type UrlList interface {
-	Create(userId int, list url_shortener_golang_app.UrlList) (int, error)
-	GetAll(userId int) ([]url_shortener_golang_app.UrlList, error)
-	GetById(userId, listId int) (url_shortener_golang_app.UrlList, error)
+	Create(userId int, list models.UrlList) (int, error)
+	GetAll(userId int) ([]models.UrlList, error)
+	GetById(userId, listId int) (models.UrlList, error)
 	Delete(userId, urlId int) error
 }
 type Repository struct {

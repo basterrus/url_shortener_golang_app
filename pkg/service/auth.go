@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"github.com/golang-jwt/jwt/v4"
 	"time"
-	"url_shortener_golang_app"
+	"url_shortener_golang_app/models"
 	"url_shortener_golang_app/pkg/repository"
 )
 
@@ -29,7 +29,7 @@ func NewAuthService(repo repository.Authorization) *AuthService {
 	return &AuthService{repo: repo}
 }
 
-func (s *AuthService) CreateUser(user url_shortener_golang_app.User) (int, error) {
+func (s *AuthService) CreateUser(user models.User) (int, error) {
 	user.Password = generateHashPassword(user.Password)
 	return s.repo.CreateUser(user)
 

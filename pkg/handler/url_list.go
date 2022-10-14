@@ -3,7 +3,7 @@ package handler
 import (
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"url_shortener_golang_app"
+	"url_shortener_golang_app/models"
 )
 
 func (h *Handler) create(c *gin.Context) {
@@ -12,11 +12,13 @@ func (h *Handler) create(c *gin.Context) {
 		return
 	}
 
-	var input url_shortener_golang_app.UrlList
+	var input models.UrlList
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
+
+	_, err := h.
 
 	id, err := h.services.UrlList.Create(userId, input)
 	if err != nil {

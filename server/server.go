@@ -1,4 +1,4 @@
-package url_shortener_golang_app
+package server
 
 import (
 	"context"
