@@ -26,7 +26,7 @@ class AuthForm extends React.Component {
         return (
             <div>
                 <div className="auth_form">
-                    <p><h1>Авторизация</h1></p>
+                    <h1>Авторизация</h1>
                     <form className="" onSubmit={(event) => this.moveSubmit(event)}>
                         <br/>
                         <label htmlFor="username">Логин</label>

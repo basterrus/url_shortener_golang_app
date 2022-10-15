@@ -8,8 +8,8 @@ import (
 
 // @Summary SignUp
 // @Tags auth
-// @Description create account
-// @ID create-account
+// @Description createItem account
+// @ID createItem-account
 // @Accept  json
 // @Produce  json
 // @Param input body http_rest_api_service_golang.User true "account info"

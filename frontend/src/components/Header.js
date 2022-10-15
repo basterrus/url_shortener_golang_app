@@ -11,7 +11,7 @@ export default function Header({menuItems, auth, logout}) {
     let login = ''
 
     if (auth.is_login) {
-        login = <Link to='/logout' className="ms-auto text-decoration-none text-white">Выйти</Link>
+        login = <Link to='/logout' className="ms-auto text-decoration-none text-white" onClick={logout}>Выйти</Link>
     } else {
         login = <Link to='/login' className="ms-auto text-decoration-none text-white"
                       onClick={login} >Войти</Link>

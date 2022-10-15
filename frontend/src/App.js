@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Header from "./components/Header";
 import AuthForm from "./components/Auth";
 import Main from "./components/Main";
+import UrlList from "./components/UrlList";
 
 
 const URL = 'http://127.0.0.1:8000/'
@@ -35,18 +36,16 @@ class App extends React.Component {
         }
     }
 
+
     login(username, password) {
         axios.post(fullUrl('auth/sign-in'), {username: username, password: password}).then(response => {
             const result = response.data
             const access = result.token
-            // const refresh = result.refresh
             localStorage.setItem('login', username)
             localStorage.setItem('access', access)
-            // localStorage.setItem('refresh', refresh)
             this.setState({'auth': {username: username, is_login: true}})
             this.getData()
-            console.log(response.data)
-            console.log(response)
+
         }).catch(error => {
             if (error.response.status !== 200) {
                 alert('Неверный логин или пароль')
@@ -64,23 +63,13 @@ class App extends React.Component {
 
         if (this.state.auth.is_login) {
             const token = localStorage.getItem('access')
-            headers['Authorization'] = 'Bearer  ' + token
+            headers['Authorization'] = 'Bearer ' + token
         }
 
-        // axios.get(fullUrl('users/'), {headers}).then(response => {
-        //     // console.log(response.data)
-        //     this.setState({users: response.data})
-        // }).catch(error => console.log(error))
-        //
-        // axios.get(fullUrl('projects/'), {headers}).then(response => {
-        //     // console.log(response.data)
-        //     this.setState({projects: response.data})
-        // }).catch(error => console.log(error))
-        //
-        // axios.get(fullUrl('todos/'), {headers}).then(response => {
-        //     // console.log(response.data)
-        //     this.setState({todos: response.data})
-        // }).catch(error => console.log(error))
+        axios.get(fullUrl('api/lists/'), {headers}).then(response => {
+            // console.log(response.data['data'])
+            this.setState({lists: response.data['data']})
+        }).catch(error => console.log(error))
     }
 
     getHeaders() {
@@ -99,7 +88,6 @@ class App extends React.Component {
     logout() {
         localStorage.setItem('login', '')
         localStorage.setItem('access', '')
-        localStorage.setItem('refresh', '')
         this.setState({'auth': {username: '', is_login: false}})
     }
 
@@ -119,6 +107,8 @@ class App extends React.Component {
                                        element={<AuthForm
                                            login={(username, password) => this.login(username, password)}/>}/>
                                 <Route exact path="/" element={<Main/>}/>
+                                <Route path="/lists" element={<UrlList items = {this.state.lists} />} />
+
                             </Routes>
                         </div>
                     </main>
