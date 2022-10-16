@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import AuthForm from "./components/Auth";
 import Main from "./components/Main";
 import UrlList from "./components/UrlList";
+import UrlAdd from "./components/UrlAdd";
 
 
 const URL = 'http://127.0.0.1:8000/'
@@ -21,7 +22,7 @@ class App extends React.Component {
             menuItems: [
                 {name: 'Главная', href: '/'},
                 {name: 'Список ссылок', href: '/lists'},
-                {name: 'Добавить ссылку', href: '/add'}
+                {name: 'Добавить ссылку', href: '/lists/add'}
             ],
 
             'lists': [],
@@ -55,6 +56,33 @@ class App extends React.Component {
         })
     }
 
+    deleteItem(id) {
+        const headers = this.getHeaders()
+        axios.delete(`http://127.0.0.1:8000/api/lists/${id}`, {headers})
+            .then(response => {
+                this.getData()
+            })
+            .catch(error => {
+                console.log(error)
+                console.log(headers)
+                this.setState({lists: []})
+            })
+    }
+
+    createItem(longurl, description) {
+
+        const headers = this.getHeaders()
+        const projectData = {longurl: longurl, description: description}
+        axios.post('http://127.0.0.1:8000/api/lists/', projectData, {headers}).then(
+            response => {
+                this.getData()
+            }
+        ).catch(error => {
+            console.log(error)
+            this.setState({lists: []})
+        })
+    }
+
     getData() {
 
         let headers = {
@@ -63,7 +91,7 @@ class App extends React.Component {
 
         if (this.state.auth.is_login) {
             const token = localStorage.getItem('access')
-            headers['Authorization'] = 'Bearer ' + token
+            headers['Authorization'] = 'Bearer' + token
         }
 
         axios.get(fullUrl('api/lists/'), {headers}).then(response => {
@@ -79,7 +107,7 @@ class App extends React.Component {
         // console.log(this.state.auth)
         if (this.state.auth.is_login) {
             const token = localStorage.getItem('access')
-            headers['Authorization'] = 'Bearer  ' + token
+            headers['Authorization'] ='Bearer ' + token
         }
 
         return headers
@@ -103,12 +131,10 @@ class App extends React.Component {
                     <main role="main">
                         <div className="container">
                             <Routes>
-                                <Route path='/login'
-                                       element={<AuthForm
-                                           login={(username, password) => this.login(username, password)}/>}/>
                                 <Route exact path="/" element={<Main/>}/>
-                                <Route path="/lists" element={<UrlList items = {this.state.lists} />} />
-
+                                <Route path='/login' element={<AuthForm login={(username, password) => this.login(username, password)}/>}/>
+                                <Route path="/lists" element={<UrlList items = {this.state.lists} deleteItem={(id) => this.deleteItem(id)} /> } />
+                                <Route path="/lists/add" element={<UrlAdd />} />
                             </Routes>
                         </div>
                     </main>

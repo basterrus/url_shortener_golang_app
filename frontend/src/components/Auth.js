@@ -25,7 +25,7 @@ class AuthForm extends React.Component {
     render() {
         return (
             <div>
-                <div className="auth_form">
+                <div className="auth_form border border-primary">
                     <h1>Авторизация</h1>
                     <form className="" onSubmit={(event) => this.moveSubmit(event)}>
                         <br/>
@@ -37,7 +37,7 @@ class AuthForm extends React.Component {
                         <input type="password" className="form-control" name="password" value={this.state.password}
                                onChange={(event) => this.moveChange(event)}/>
                         <br/>
-                        <input type="submit" className="btn btn-primary" value="Войти"/>
+                        <input type="submit" className="btn btn-primary col-8" value="Войти"/>
                     </form>
                 </div>
             </div>
