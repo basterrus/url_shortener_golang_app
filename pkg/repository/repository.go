@@ -1,8 +1,8 @@
 package repository
 
 import (
+	"github.com/basterrus/url_shortener_golang_app/models"
 	"github.com/jmoiron/sqlx"
-	"url_shortener_golang_app/models"
 )
 
 type Authorization interface {

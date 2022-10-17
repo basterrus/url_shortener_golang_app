@@ -1,10 +1,10 @@
 package handler
 
 import (
+	"github.com/basterrus/url_shortener_golang_app/pkg/service"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"time"
-	"url_shortener_golang_app/pkg/service"
 )
 
 type Handler struct {
@@ -46,10 +46,6 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			lists.GET("/:id", h.getItemById)
 			lists.DELETE("/:id", h.deleteItem)
 		}
-		//decode := api.Group("/decode")
-		//{
-		//	decode.GET("/", h.decode)
-		//}
 	}
 	return router
 }

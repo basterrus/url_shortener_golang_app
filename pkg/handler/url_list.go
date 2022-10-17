@@ -1,12 +1,12 @@
 package handler
 
 import (
+	"github.com/basterrus/url_shortener_golang_app/models"
 	"github.com/gin-gonic/gin"
 	"math/rand"
 	"net/http"
 	"net/url"
 	"strconv"
-	"url_shortener_golang_app/models"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()"

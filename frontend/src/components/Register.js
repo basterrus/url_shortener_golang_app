@@ -25,18 +25,21 @@ class RegisterForm extends React.Component {
     render() {
         return (
 
-            <form className="col-4" onSubmit={(event) => this.moveSubmit(event)}>
-                <br/>
-                <label htmlFor="username">Логин</label>
-                <input type="text" className="form-control" name="username" value={this.state.login}
-                       onChange={(event) => this.moveChange(event)}/>
-                <br/>
-                <label htmlFor="password">Пароль</label>
-                <input type="password" className="form-control" name="password" value={this.state.password}
-                       onChange={(event) => this.moveChange(event)}/>
-                <br/>
-                <input type="submit" className="btn btn-primary" value="Войти"/>
-            </form>
+            <div className="auth_form">
+                <p className="fw-bold fs-2">Регистрация</p>
+                <form className="" onSubmit={(event) => this.moveSubmit(event)}>
+                    <br/>
+                    <label htmlFor="username">Логин</label>
+                    <input type="text" className="form-control" name="username" value={this.state.login}
+                           onChange={(event) => this.moveChange(event)}/>
+                    <br/>
+                    <label htmlFor="password">Пароль</label>
+                    <input type="password" className="form-control" name="password" value={this.state.password}
+                           onChange={(event) => this.moveChange(event)}/>
+                    <br/>
+                    <input type="submit" className="btn btn-primary" value="Зарегистрироваться"/>
+                </form>
+            </div>
         );
     }
 }

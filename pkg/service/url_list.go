@@ -1,8 +1,8 @@
 package service
 
 import (
-	"url_shortener_golang_app/models"
-	"url_shortener_golang_app/pkg/repository"
+	"github.com/basterrus/url_shortener_golang_app/models"
+	"github.com/basterrus/url_shortener_golang_app/pkg/repository"
 )
 
 type UrlListService struct {

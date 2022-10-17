@@ -2,9 +2,9 @@ package repository
 
 import (
 	"fmt"
+	"github.com/basterrus/url_shortener_golang_app/models"
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
-	"url_shortener_golang_app/models"
 )
 
 type AuthPostgres struct {

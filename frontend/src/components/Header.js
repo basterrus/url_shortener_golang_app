@@ -9,12 +9,15 @@ import {Link} from "react-router-dom";
 export default function Header({menuItems, auth, logout}) {
 
     let login = ''
+    // let register = ''
 
     if (auth.is_login) {
         login = <Link to='/logout' className="ms-auto text-decoration-none text-white" onClick={logout}>Выйти</Link>
     } else {
         login = <Link to='/login' className="ms-auto text-decoration-none text-white"
                       onClick={login} >Войти</Link>
+        // register = <Link to='/register' className="ms-auto text-decoration-none text-white"
+        //                  onClick={register} >Регистрация</Link>
     }
 
     return (

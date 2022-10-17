@@ -13,6 +13,9 @@ export default function Main() {
             <p>Для просмотра списка уже существующих ссылок перейдите на страницу <span className="fw-bold">Список ссылок</span>
             </p>
             <p>Для добавления новых ссылок перейдите на страницу <span className="fw-bold">Добавить ссылку</span></p>
+            <a href="/register" className="btn btn-primary" >Регистрация</a>
         </div>
+
+
     )
 }

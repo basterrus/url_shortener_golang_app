@@ -2,6 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/basterrus/url_shortener_golang_app/pkg/handler"
+	"github.com/basterrus/url_shortener_golang_app/pkg/repository"
+	"github.com/basterrus/url_shortener_golang_app/pkg/service"
+	"github.com/basterrus/url_shortener_golang_app/server"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
@@ -10,10 +14,6 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"url_shortener_golang_app/pkg/handler"
-	"url_shortener_golang_app/pkg/repository"
-	"url_shortener_golang_app/pkg/service"
-	"url_shortener_golang_app/server"
 )
 
 //@title URL Shortener Application API

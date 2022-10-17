@@ -2,8 +2,8 @@ package repository
 
 import (
 	"fmt"
+	"github.com/basterrus/url_shortener_golang_app/models"
 	"github.com/jmoiron/sqlx"
-	"url_shortener_golang_app/models"
 )
 
 type UrlListPostgres struct {

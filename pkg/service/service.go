@@ -1,9 +1,11 @@
 package service
 
 import (
-	"url_shortener_golang_app/models"
-	"url_shortener_golang_app/pkg/repository"
+	"github.com/basterrus/url_shortener_golang_app/models"
+	"github.com/basterrus/url_shortener_golang_app/pkg/repository"
 )
+
+//go:generate mockgen -source=service.go -destination=mocks/mock.go
 
 type Authorization interface {
 	CreateUser(user models.User) (int, error)

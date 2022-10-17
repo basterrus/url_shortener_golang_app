@@ -4,10 +4,10 @@ import (
 	"crypto/sha1"
 	"errors"
 	"fmt"
+	"github.com/basterrus/url_shortener_golang_app/models"
+	"github.com/basterrus/url_shortener_golang_app/pkg/repository"
 	"github.com/golang-jwt/jwt/v4"
 	"time"
-	"url_shortener_golang_app/models"
-	"url_shortener_golang_app/pkg/repository"
 )
 
 const (

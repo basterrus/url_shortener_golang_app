@@ -15,3 +15,5 @@ services:
       - .env
     environment:
       - POSTGRES_PASSWORD=$DB_PASSWORD
+
+#  frontend:

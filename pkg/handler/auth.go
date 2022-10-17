@@ -1,9 +1,9 @@
 package handler
 
 import (
+	"github.com/basterrus/url_shortener_golang_app/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"url_shortener_golang_app/models"
 )
 
 // @Summary SignUp
