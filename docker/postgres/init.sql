@@ -1,0 +1,4 @@
+CREATE USER admin WITH PASSWORD 'Qwer1234';
+
+CREATE DATABASE url_shortener;
+GRANT ALL PRIVILEGES ON DATABASE url_shortener TO admin;

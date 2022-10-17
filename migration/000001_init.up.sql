@@ -1,0 +1,23 @@
+CREATE TABLE users
+(
+    id            INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    username      VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE url_list
+(
+    id          INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    long_url    VARCHAR(255) NOT NULL,
+    short_url   VARCHAR(255) NOT NULL,
+    description VARCHAR(255)
+);
+
+CREATE TABLE users_lists
+(
+    user_id INTEGER REFERENCES users (id) ON DELETE SET NULL,
+    url_id  INTEGER REFERENCES url_list (id) ON DELETE SET NULL,
+    UNIQUE(user_id, url_id)
+);
+
+INSERT INTO users (username, password_hash) VALUES ('user', '647166737275666270736575626662707365666273697267744cd3677e5f005658864de9f78234e8eb31b1013b')

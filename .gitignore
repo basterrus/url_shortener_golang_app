@@ -1,2 +1,4 @@
-.idea
+.idea/
 .env
+frontend/node_modules/
+frontend/.idea/

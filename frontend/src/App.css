@@ -1,0 +1,13 @@
+.App {
+    text-align: center;
+}
+
+.auth_form {
+    position: absolute;
+    top: 250px;
+    left: 600px;
+    padding: 50px;
+    border: 1px solid cornflowerblue;
+    border-radius: 25px;
+    width: 550px;
+}
