@@ -20,8 +20,8 @@ import (
 //@version 1.0
 //description REST API service for URL Shortener Application
 
-// @host      127.0.0.1:8000
-// @BasePath  /
+// @host     127.0.0.1:8000
+// @BasePath /
 
 //@securityDefinitions.apikey ApiKeyAuth
 //@in header

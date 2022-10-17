@@ -11,6 +11,20 @@ import (
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()"
 
+// @Summary Create createItem
+// @Security ApiKeyAuth
+// @Tags lists
+// @Description create createItem
+// @ID create-list
+// @Accept  json
+// @Produce  json
+// @Param input body models.urllist true "createItem info"
+// @Success 200 {integer} integer 1
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /api/lists [post]
+
 func (h *Handler) createItem(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -44,6 +58,19 @@ type getAllListsResponse struct {
 	Data []models.UrlList `json:"data"`
 }
 
+// @Summary Get All Item
+// @Security ApiKeyAuth
+// @Tags lists
+// @Description get all item
+// @ID get-all-lists
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} getAllListsResponse
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /api/lists [get]
+
 func (h *Handler) getAllItems(c *gin.Context) {
 	userId, err := getUserId(c)
 	if err != nil {
@@ -58,6 +85,19 @@ func (h *Handler) getAllItems(c *gin.Context) {
 		Data: lists,
 	})
 }
+
+// @Summary Get List By Id
+// @Security ApiKeyAuth
+// @Tags lists
+// @Description get list by id
+// @ID get-list-by-id
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} model.urllist
+// @Failure 400,404 {object} errorResponse
+// @Failure 500 {object} errorResponse
+// @Failure default {object} errorResponse
+// @Router /api/lists/:id [get]
 
 func (h *Handler) getItemById(c *gin.Context) {
 	userId, err := getUserId(c)

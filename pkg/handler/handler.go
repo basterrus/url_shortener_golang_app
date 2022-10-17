@@ -1,9 +1,12 @@
 package handler
 
 import (
+	_ "github.com/basterrus/url_shortener_golang_app/docs"
 	"github.com/basterrus/url_shortener_golang_app/pkg/service"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 	"time"
 )
 
@@ -17,6 +20,7 @@ func NewHandler(services *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"http://localhost:3000"},
