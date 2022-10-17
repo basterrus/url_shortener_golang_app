@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=$DB_PASSWORD
 
 
-  url-app:
+  url_shortener_golang_app:
     build: ./
     command: ./wait-for-postgres.sh db ./url_shortener_golang_app
     ports:

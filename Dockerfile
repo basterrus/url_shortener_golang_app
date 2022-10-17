@@ -3,14 +3,14 @@ FROM golang:1.14-buster
 RUN go version
 ENV GOPATH=/
 
-COPY ./ ./
+COPY ./ ./url_shortener_golang_app
 
 # install psql
 RUN apt-get update
 RUN apt-get -y install postgresql-client
 
 # make wait-for-postgres.sh executable
-RUN chmod +x wait-for-postgres.sh
+RUN chmod +x url_shortener_golang_app/wait-for-postgres.sh
 
 # build go app
 RUN go mod download
