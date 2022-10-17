@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
     environment:
-      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_PASSWORD=Qwer1234
 
 
   url_shortener_golang_app:
@@ -24,5 +24,7 @@ services:
       - 8000:8000
     depends_on:
       - postgres_db
+    env_file:
+      - .env
     environment:
-      - DB_PASSWORD=$DB_PASSWORD
+      - DB_PASSWORD=Qwer1234

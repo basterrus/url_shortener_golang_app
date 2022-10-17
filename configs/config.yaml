@@ -1,7 +1,7 @@
 port: "8000"
 
 db:
-  host: "localhost"
+  host: "postgres_db"
   port: "5432"
   username: "admin"
   dbname: "url_shortener"
