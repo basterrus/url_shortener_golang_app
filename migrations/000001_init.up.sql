@@ -19,5 +19,3 @@ CREATE TABLE users_lists
     url_id  INTEGER REFERENCES url_list (id) ON DELETE SET NULL,
     UNIQUE(user_id, url_id)
 );
-
-INSERT INTO users (username, password_hash) VALUES ('user', '647166737275666270736575626662707365666273697267744cd3677e5f005658864de9f78234e8eb31b1013b')

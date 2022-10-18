@@ -8,7 +8,7 @@ test:
 	go test -v ./...
 
 migrate:
-	migrate -path ./migrations -database 'postgres://postgres:Qwer1234@0.0.0.0:5436/postgres?sslmode=disable' up
+	migrate -path ./migrations -database 'postgres://postgres:Qwer1234@0.0.0.0:5432/url_shortener?sslmode=disable' up
 
 swag:
 	swag init -g cmd/api/main.go

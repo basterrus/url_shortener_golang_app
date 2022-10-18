@@ -7,24 +7,23 @@ services:
     build:
       context: ./docker/postgres
       dockerfile: Dockerfile
-    volumes:
-      - ./docker/postgres/nginx.conf:/docker-entrypoint-initdb.d/nginx.conf
     ports:
       - "5432:5432"
     env_file:
       - .env
     environment:
-      - POSTGRES_PASSWORD=Qwer1234
+      - POSTGRES_PASSWORD=$DB_PASSWORD
 
 
   url_shortener_golang_app:
     build: ./
-    command: ./wait-for-postgres.sh db ./url_shortener_golang_app
+    #    command: ./wait-for-postgres.sh db ./url_shortener_golang_app
     ports:
-      - 8000:8000
-    depends_on:
-      - postgres_db
+      - "8000:8000"
     env_file:
       - .env
+    depends_on:
+      - postgres_db
     environment:
-      - DB_PASSWORD=Qwer1234
+      - DB_PASSWORD=$DB_PASSWORD
+
