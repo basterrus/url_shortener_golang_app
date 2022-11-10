@@ -1,8 +1,12 @@
 package handler
 
 import (
+	"bufio"
 	"errors"
 	"github.com/gin-gonic/gin"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"net"
 	"net/http"
 	"strings"
 )
@@ -52,4 +56,54 @@ func getUserId(c *gin.Context) (int, error) {
 		return 0, errors.New("user id not found")
 	}
 	return idInt, nil
+}
+
+type MetricsMiddleware struct {
+	opsProcessed *prometheus.CounterVec
+}
+
+func NewMetricsMiddleware() *MetricsMiddleware {
+	opsProcessed := promauto.NewCounterVec(prometheus.CounterOpts{
+		Name: "operation_total",
+		Help: "The total number of processed events",
+	}, []string{"method", "path", "statuscode"})
+	return &MetricsMiddleware{
+		opsProcessed: opsProcessed,
+	}
+}
+
+// Metrics middleware to collect metrics from http requests
+func (lm *MetricsMiddleware) Metrics(next *gin.Context) {
+	return
+}
+
+type responseWriterInterceptor struct {
+	http.ResponseWriter
+	statusCode int
+}
+
+func (w *responseWriterInterceptor) WriteHeader(statusCode int) {
+	w.statusCode = statusCode
+	w.ResponseWriter.WriteHeader(statusCode)
+}
+
+func (w *responseWriterInterceptor) Write(p []byte) (int, error) {
+	return w.ResponseWriter.Write(p)
+}
+
+func (w *responseWriterInterceptor) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+	h, ok := w.ResponseWriter.(http.Hijacker)
+	if !ok {
+		return nil, nil, errors.New("type assertion failed http.ResponseWriter not a http.Hijacker")
+	}
+	return h.Hijack()
+}
+
+func (w *responseWriterInterceptor) Flush() {
+	f, ok := w.ResponseWriter.(http.Flusher)
+	if !ok {
+		return
+	}
+
+	f.Flush()
 }

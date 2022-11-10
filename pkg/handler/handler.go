@@ -22,6 +22,9 @@ func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
+	metricsMiddleware := NewMetricsMiddleware()
+
+	router.Use(metricsMiddleware.Metrics)
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"http://localhost:3000"},
 		AllowMethods: []string{"GET", "POST", "PUT", "PATCH", "DELETE"},

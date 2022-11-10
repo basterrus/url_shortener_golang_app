@@ -32,7 +32,7 @@ func main() {
 	/// logrus json formatter
 	logrus.SetFormatter(new(logrus.JSONFormatter))
 
-	// initConfig -- read variables from config.yaml
+	// initConfig -- read variables from prometheus.yml
 	if err := initConfig(); err != nil {
 		logrus.Fatalf("Error load configuration file %s", err.Error())
 	}
@@ -84,7 +84,7 @@ func main() {
 }
 
 func initConfig() error {
-	viper.AddConfigPath("configs")
+	viper.AddConfigPath("configs/main")
 	viper.SetConfigName("config")
 	return viper.ReadInConfig()
 }

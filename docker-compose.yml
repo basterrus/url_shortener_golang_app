@@ -27,3 +27,70 @@ services:
     environment:
       - DB_PASSWORD=$DB_PASSWORD
 
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./configs/prometheus:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/etc/prometheus'
+    links:
+      - alert-manager:alert-manager
+    restart: always
+    deploy:
+      mode: global
+    ports:
+      - "9090:9090"
+    depends_on:
+      - url_shortener_golang_app
+
+
+  node-exporter:
+    image: prom/node-exporter
+    command:
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    ports:
+      - "9100:9100"
+    restart: always
+    deploy:
+      mode: global
+
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+
+  alert-manager:
+    image: prom/alertmanager:latest
+    volumes:
+      - ./configs/alertmanager:/etc/alertmanager
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/etc/alertmanager/data'
+    ports:
+      - "9093:9093"
+
+  push-gateway:
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+    depends_on:
+      - prometheus
+
+
+  telegram-alert-manager-bot:
+    image: moghaddas/prometheus_bot
+    volumes:
+      - ./configs/telegram:/etc/telegram
+    command:
+      - '-c=/etc/telegram/config.yml'
+    ports:
+      - "9087:9087"
+    depends_on:
+      - alert-manager
